@@ -13,18 +13,33 @@
         .transparent-box {
             background: transparent;
             backdrop-filter: blur(3px);
+            -webkit-backdrop-filter: blur(3px);
             box-sizing: border-box;
             padding: 20px;
         }
         .transparent-form{
             background: transparent;
             backdrop-filter: blur(3px);
+            -webkit-backdrop-filter: blur(3px);
             border-color:gray;
         }
         body {
             background-repeat: repeat;
             background-image: url("https://unsplash.com/photos/8muUTAmcWU4/download?ixid=M3wxMjA3fDB8MXxzZWFyY2h8MjF8fGxpYnJhcnl8ZW58MHx8fHwxNjg1OTg4OTQ0fDA&force=true&w=1920");  
             background-size: initial;
+        }
+        .transparent-box {
+            /* Fallback styles */
+            background: rgba(0, 0, 0, 0.5); /* Fallback background color */
+            border-color:gray;
+        }
+        @supports (-webkit-backdrop-filter: blur(3px)) or (backdrop-filter: blur(3px)) {
+            .transparent-box {
+                background: transparent;
+                backdrop-filter: blur(3px);
+                -webkit-backdrop-filter: blur(3px);
+                border-color:gray;
+            }
         }
     </style>
 </head>
@@ -65,7 +80,7 @@
 
         <form action="/wall/add_message" class="form-group" method="post">
             {% csrf_token %}
-            <textarea name="message" cols="30" rows="5" class="form-control"></textarea>
+            <textarea name="message" cols="30" rows="5" placeholder="Enter your message" class="form-control"></textarea>
             <input type="submit" class="btn btn-primary m-2" value="Post">
         </form>
 
@@ -91,7 +106,7 @@
                         <form action="/wall/add_comment" class="form-group" method="post">
                             {% csrf_token %}
                             <input type="hidden" name="message_id_cmt" value="{{msg.id}}">
-                            <input type="text" class="form-control" name="comment">
+                            <input type="text" class="form-control" name="comment" placeholder="Enter your comment">
                             <input type="submit" class="btn btn-success m-2" value="Comment">
                         </form>
                     </div>
