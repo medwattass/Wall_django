@@ -16,7 +16,7 @@ def wall(request):
         }
         return render(request, "wall.html", context)
     else:
-        return redirect('/login')
+        return redirect('/logout')
 
 
 def post_msg(request):
