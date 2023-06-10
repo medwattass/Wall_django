@@ -34,6 +34,7 @@ INSTALLED_APPS = [
     'log_reg_app',
     'wall_app',
     
+    'django.contrib.humanize',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',

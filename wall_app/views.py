@@ -7,10 +7,12 @@ import datetime
 
 def wall(request):
     user_id = request.session.get('user_id')
+    current_time = datetime.datetime.now()
     if user_id:
         context = {
             "user": User.objects.get(id=user_id),
-            "msgs": Message.objects.all()
+            "msgs": Message.objects.all(),
+            'current_time': current_time
         }
         return render(request, "wall.html", context)
     else:
